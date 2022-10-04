@@ -1,0 +1,44 @@
+
+<div class="container">
+    <form  #gameform="ngForm" (ngSubmit)="saveDetails(gameform.value)">
+        <div class="row">
+            <mat-form-field appearance="outline" [style.width.px]=450>
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title"  type="text" name="title" ngModel >
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" [style.width.px]=450>
+                <mat-label>Description:</mat-label>
+                <textarea matInput placeholder="Description" name="description" [style.height.px]="100" ngModel></textarea>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput placeholder="Price" type="number" name="price" ngModel>
+                <span matPrefix>$&nbsp;</span>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" [style.width.px]=450>
+                <mat-label>ImageUrl</mat-label>
+                <input matInput maxlength="100" inputmode="tel" placeholder="imageUrl" name="imageUrl" ngModel>
+            </mat-form-field>
+        </div>
+        <div class="row">
+           
+                <mat-label>Genre:</mat-label>
+                <br />
+                <div *ngFor="let item of _genreList">
+                    <div><input mat-checkbox type="checkbox" name="{{item.name}}" (change)="onChange()" [(ngModel)]="item.isSelected">{{item.name}}</div>
+                </div>
+  
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" [routerLink]="['/']">Submit</button>
+        </div>
+    </form>
+  
+</div>

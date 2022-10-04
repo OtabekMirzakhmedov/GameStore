@@ -1,0 +1,39 @@
+
+<section class="container gamedetail">
+    <div class="row mt-5">
+
+        <div class="col-lg-5 col-md-12 col-12">
+
+            <img class="img-fluid w-100" src="{{game.imageUrl}}" />
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-12">
+
+            <h3>{{game.title}}</h3>
+            <br />
+            <h2>{{game.price | currency:'USD':true}}</h2>
+            <br />
+            
+            <h5>Genre: <span>{{game.genreName}}</span>
+            </h5> 
+           
+
+            <br />
+            <button class="btn-primary">Add to Cart</button>
+            <br />
+            <br />
+            <h4>Description</h4>
+            <span>{{game.description}}</span>
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+</section>
