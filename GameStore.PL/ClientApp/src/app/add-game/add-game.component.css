@@ -3,3 +3,7 @@ ul {
     list-style-type: none;
     margin-top: 4px;
 }
+
+.genre-margin {
+    margin: 12px 12px;
+}

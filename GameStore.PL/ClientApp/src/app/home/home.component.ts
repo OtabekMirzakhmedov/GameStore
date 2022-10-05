@@ -24,6 +24,12 @@ export class HomeComponent {
             { id: 1, name: "Strategy", isSelected: false },
             { id: 2, name: "Shooter", isSelected: false },
             { id: 3, name: "Action", isSelected: false },
+            { id: 4, name: "Rpg", isSelected: false },
+            { id: 5, name: "Races", isSelected: false },
+            { id: 6, name: "Adventure", isSelected: false },
+            { id: 7, name: "Puzzle", isSelected: false },
+            { id: 8, name: "Simulation", isSelected: false },
+            { id: 9, name: "Other", isSelected: false }
         ]
     }
     gamesTempArray: any = [];
@@ -44,7 +50,7 @@ export class HomeComponent {
     onCreate() {
         const dialogConfig = new MatDialogConfig();
 
-        dialogConfig.disableClose = true;
+        dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
 
         this.dialog.open(AddGameComponent, dialogConfig);
@@ -102,6 +108,17 @@ export class HomeComponent {
         console.log(game);
         this.http.delete(this.baseUrl + 'api/Game/' + game.id).subscribe(() => this.status = 'Delete successful');
         window.location.reload();
+    }
+
+    Edit(game: GameModel) {
+        const dialogConfigedit = new MatDialogConfig();
+
+        dialogConfigedit.disableClose = false;
+        dialogConfigedit.autoFocus = true;
+
+        this.dialog.open(AddGameComponent, {
+            data: game
+        });
     }
 
 

@@ -27,17 +27,22 @@
             </mat-form-field>
         </div>
         <div class="row">
-           
-                <mat-label>Genre:</mat-label>
-                <br />
-                <div *ngFor="let item of _genreList">
-                    <div><input mat-checkbox type="checkbox" name="{{item.name}}" (change)="onChange()" [(ngModel)]="item.isSelected">{{item.name}}</div>
-                </div>
-  
-        </div>
 
+         
+            <button type="button" class="btn btn-light" data-toggle="dropdown">
+                Genre<i class="fa fa-plus" aria-hidden="false"></i>
+            </button>
+            <div class="dropdown-menu">
+                <div *ngFor="let item of _genreList; let i=index">
+                    <div><input mat-checkbox type="checkbox"  class="genre-margin" name="{{item.name}}" (change)="onChange()" [(ngModel)]="item.isSelected">{{item.name}} </div>
+
+                </div>
+
+            </div>
+        </div>
+        <br />
         <div mat-dialog-actions>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" [routerLink]="['/']">Submit</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" [routerLink]="['/']">{{editmode ? "Update": "Add Game"}}</button>
         </div>
     </form>
   
