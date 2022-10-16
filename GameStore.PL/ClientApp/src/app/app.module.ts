@@ -10,9 +10,12 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { TrialComponent } from './trial/trial.component'
-import {AddGameComponent } from './add-game/add-game.component';
+import { AddGameComponent } from './add-game/add-game.component';
+import { AvatarChangeComponent } from './avatar-change/avatar-change.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatToolbarModule} from '@angular/material'
 import { MatNativeDateModule } from '@angular/material/core';
@@ -44,8 +47,11 @@ import { SearchfilterPipe } from './searchfilter.pipe';
         FetchDataComponent,
         AddGameComponent,
         TrialComponent,
+        UserRegistrationComponent,
         GameDetailComponent,
-        SearchfilterPipe
+        UserloginComponent,
+        SearchfilterPipe,
+        AvatarChangeComponent
 
   ],
     imports: [
@@ -76,7 +82,11 @@ import { SearchfilterPipe } from './searchfilter.pipe';
       { path: 'counter', component: CounterComponent },
         { path: 'fetch-data', component: FetchDataComponent },
         { path: 'trial', component: TrialComponent },
-        {path: 'games/:id', component: GameDetailComponent},
+        { path: 'games/:id', component: GameDetailComponent },
+        { path: 'register', component: UserRegistrationComponent },
+        { path: 'login', component: UserloginComponent },
+        { path: 'avatar', component: AvatarChangeComponent }
+
 
     ]),
     BrowserAnimationsModule

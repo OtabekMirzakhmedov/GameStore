@@ -7,13 +7,14 @@ namespace GameStore.DAL.Interface
 {
     public interface IUnitOfWork
     {
-        //IUserRepository UserRepository { get; }
 
         IGameRepository GameRepository { get; }
 
         IGenreRepository GenreRepository { get; }
 
         IGameGenreRepository GameGenreRepository { get; }
+
+        IUserRepository UserRepository { get; }
 
         Task SaveAsync();
 

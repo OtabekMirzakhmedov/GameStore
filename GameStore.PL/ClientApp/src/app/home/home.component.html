@@ -25,7 +25,8 @@
                 <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="searchText" placeholder="Search...">
             </div>
         </div>
-        <div class="col-2 d-flex justify-content-end">
+        
+        <div *ngIf="loggedIn()" class="col-2 d-flex justify-content-end">
             <button class="btn btn-success" (click)="onCreate()">
                 Add game
             </button>
@@ -40,16 +41,16 @@
 <div class="row">
     <ng-container *ngFor="let g of games | searchfilter : searchText; let i=index">
         <div class="col">
-            <div class="card" style="width: 20rem;">
+            <div class="card" style="width: 15rem;">
 
                 <img class="card-img-top" src="{{g.imageUrl}}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">{{g.title}}</h5>
+                    <h6 class="card-title">{{g.title}}</h6>
                     <p class="card-text">{{g.price | currency:'USD':true}}</p>
-                    <a href="trial" target="_blank" class="btn btn-primary">Add to cart <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                    <a  class="btn" data-toggle="tooltip" title="Click to edit" (click)="Edit(g)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="#" class="btn" data-toggle="tooltip" title="More info" (click)="showInfo(g)" [routerLink]="['/games/'+g.id]"><i class="fa fa-info" aria-hidden="true"></i></a>
-                    <a href="#" class="btn" data-toggle="tooltip" title="Delete" (click)="Delete(g)" [routerLink]="['/']"><i class="fa fa-trash"></i></a>
+                    <a href="trial" target="_blank" class="btn btn-primary">Buy <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                    <a *ngIf="loggedIn()"  class="btn" data-toggle="tooltip" title="Click to edit" (click)="Edit(g)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a  href="#" class="btn" data-toggle="tooltip" title="More info" (click)="showInfo(g)" [routerLink]="['/games/'+g.id]"><i class="fa fa-info" aria-hidden="true"></i></a>
+                    <a *ngIf="loggedIn()" href="#" class="btn" data-toggle="tooltip" title="Delete" (click)="Delete(g)" [routerLink]="['/']"><i class="fa fa-trash"></i></a>
                 </div>
 
             </div>

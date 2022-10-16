@@ -32,6 +32,12 @@ export class HomeComponent {
             { id: 9, name: "Other", isSelected: false }
         ]
     }
+    loggedIn() {
+        if (localStorage.getItem('userStatus') === 'success') {
+            return true;
+        }
+    }
+
     gamesTempArray: any = [];
     getGames() {
         this.http.get<GameModel[]>(this.baseUrl + 'api/game').subscribe(result => {
@@ -99,6 +105,7 @@ export class HomeComponent {
     ngOnInit() {
         this.getGenres();
         this.getGames();
+
     }
 
     showinfo(game: GameModel) {

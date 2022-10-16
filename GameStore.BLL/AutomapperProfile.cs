@@ -14,6 +14,7 @@ namespace GameStore.BLL
         public AutomapperProfile()
         {
             CreateMap<Game, GameModel>().ReverseMap();
+            CreateMap<User, UserModel>().ReverseMap();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace GameStore.DAL.Data
             GameRepository = new GameRepository(_dbContext);
             GenreRepository = new GenreRepository(_dbContext);
             GameGenreRepository = new GameGenreRepository(_dbContext);
+            UserRepository = new UserRepository(_dbContext);
 
         }
 
@@ -25,6 +26,8 @@ namespace GameStore.DAL.Data
         public IGenreRepository GenreRepository { get; private set; }
 
         public IGameGenreRepository GameGenreRepository { get; private set; }
+
+        public IUserRepository UserRepository { get; private set; }
 
 
         public void Dispose()

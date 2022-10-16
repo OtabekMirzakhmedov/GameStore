@@ -16,7 +16,7 @@ using GameStore.DAL.Interface;
 using GameStore.DAL.Repositories;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjectAngular
 {
@@ -60,6 +60,14 @@ namespace ProjectAngular
             services.AddTransient<IGenreRepository, GenreRepository>();
             services.AddTransient<IGenreService, GenreService>();
             services.AddTransient<IGameGenreRepository, GameGenreRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            });
+
             //services.AddTransient<IGameGenreService, GameGenreService>();
         }
 

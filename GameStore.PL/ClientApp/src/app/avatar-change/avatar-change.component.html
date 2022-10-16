@@ -1,0 +1,15 @@
+<p>avatar-change works!</p>
+<div>
+    <img title="click to change avatar" src="{{CurrentUser.imageUrl}}" alt="click to change avatar" class="avatar center">
+</div>
+
+<form #avatarform="ngForm" (ngSubmit)="avatarChange(avatarform)">
+    <div class="row">
+        <mat-form-field appearance="outline" [style.width.px]=450>
+            <input matInput placeholder="ImageUrl" type="text" name="imageurl" ngModel>
+        </mat-form-field>
+    </div>
+
+        <button mat-raised-button color="primary" type="submit"  >Change Avatar</button>
+
+</form>

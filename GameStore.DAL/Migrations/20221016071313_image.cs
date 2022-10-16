@@ -2,7 +2,7 @@
 
 namespace GameStore.DAL.Migrations
 {
-    public partial class firstCreate : Migration
+    public partial class image : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,6 +34,24 @@ namespace GameStore.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genres", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true, defaultValue: "default"),
+                    LastName = table.Column<string>(nullable: true, defaultValue: "default"),
+                    UserName = table.Column<string>(nullable: true, defaultValue: "default"),
+                    Password = table.Column<string>(nullable: true, defaultValue: "default"),
+                    Email = table.Column<string>(nullable: true, defaultValue: "default"),
+                    ImageUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +89,9 @@ namespace GameStore.DAL.Migrations
         {
             migrationBuilder.DropTable(
                 name: "GameGenres");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Games");
