@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+import { CommentComponent } from './comment/comment.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
@@ -15,6 +16,7 @@ import { UserloginComponent } from './userlogin/userlogin.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { TrialComponent } from './trial/trial.component'
 import { AddGameComponent } from './add-game/add-game.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 import { AvatarChangeComponent } from './avatar-change/avatar-change.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatToolbarModule} from '@angular/material'
@@ -34,6 +36,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatCardModule } from '@angular/material/card';
 import { MatGridList, MatGridListModule } from '@angular/material/grid-list';
 import { SearchfilterPipe } from './searchfilter.pipe';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 
@@ -51,7 +54,9 @@ import { SearchfilterPipe } from './searchfilter.pipe';
         GameDetailComponent,
         UserloginComponent,
         SearchfilterPipe,
-        AvatarChangeComponent
+        AvatarChangeComponent,
+        CommentFormComponent,
+        CommentComponent
 
   ],
     imports: [
@@ -76,6 +81,7 @@ import { SearchfilterPipe } from './searchfilter.pipe';
         MatToolbarModule,
         MatGridListModule,
         MatCardModule,
+        MatButtonToggleModule,
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'games/add', component: AddGameComponent },

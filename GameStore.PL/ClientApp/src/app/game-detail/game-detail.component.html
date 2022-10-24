@@ -4,36 +4,202 @@
 
         <div class="col-lg-5 col-md-12 col-12">
 
-            <img class="img-fluid w-100" src="{{game.imageUrl}}" />
+            <img class="img-fluid w-75" src="{{game.imageUrl}}" />
         </div>
 
         <div class="col-lg-6 col-md-12 col-12">
-
             <h3>{{game.title}}</h3>
             <br />
             <h2>{{game.price | currency:'USD':true}}</h2>
-            <br />
-            
+            <br />            
             <h5>Genre: <span>{{game.genreName}}</span>
             </h5> 
-           
-
             <br />
             <button class="btn-primary">Add to Cart</button>
             <br />
             <br />
             <h4>Description</h4>
             <span>{{game.description}}</span>
-
-
-
-
         </div>
-
-
-
-
     </div>
-
-
 </section>
+
+<hr class="rounded">
+
+
+<div class="comments">
+    <h3 class="comments-title">Comments</h3>
+    <div class="comment-form-title">Write comment</div>
+    <app-comment-form submitLabel="Save"
+                  (handleSubmit)="addComment({ text: $event, parentCommentId: 0})">
+    </app-comment-form>
+    <div class="comments-container">
+        <app-comment *ngFor="let rootComment of getRootComments()"
+                 [comment]="rootComment"
+                 [replies]="getReplies(rootComment.id)"
+                 [activeComment]="activeComment"
+                 (setActiveComment)="setActiveComment($event)"
+                 (addComment)="addComment($event)"
+                 (deleteComment)="deleteComment($event)"
+                 (updateComment)="updateComment($event)"
+                 >
+        </app-comment>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
+<!--<div class="row commentpart">
+    <img src="{{CurrentUser.imageUrl}}" class="avatar" />
+    <form class="example-form row" [formGroup]="commentForm" (ngSubmit)="onPost(commentForm.value)" layout layout-align="center" layout-padding>
+        <div class="form-group col-11">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment"
+                          class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comment.errors}"></textarea>
+                <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+                    <div *ngIf="f.comment.errors.maxlength">Password must be at most 600 characters</div>
+                </div>
+
+            </mat-form-field>
+        </div>
+        <div class="col-1">
+            <button mat-button [disabled]="!commentForm.value.comment || commentForm.invalid">Save</button>
+            <button mat-button [disabled]="!commentForm.value.comment || commentForm.invalid">Cancel</button>
+        </div>
+    </form>
+    
+</div>
+
+<section *ngFor="let c of getRootComments(); let i = index ">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-start">
+                <img class="rounded-circle shadow-1-strong me-3 avatar"
+                     src="{{c.userImageUrl}}" alt="avatar" />
+                <div class="flex-grow-1 flex-shrink-1">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-1">
+                                {{c.userFirstName +' '+c.userLastName}} <span class="small">- 2 hours ago</span>
+                            </p>
+
+                        </div>
+                        <p class="small mb-0">
+                            {{c.text}}
+                        </p>
+                    </div>
+                    <button (click)="togglePanel[i] =!togglePanel[i]" type="button" class="btn btn-link">Reply</button>
+                    <button type="button" class="btn btn-link">Delete</button>
+                    <button type="button" class="btn btn-link">Edit</button>
+                  
+
+                    <div class="replies row" *ngFor="let r of getReplies(c.id)">
+                        <img class="rounded-circle shadow-1-strong me-3 avatar"
+                             src="{{r.userImageUrl}}" alt="avatar" />
+                        <div class="flex-grow-1 flex-shrink-1">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="mb-1">
+                                        {{r.userFirstName +' '+r.userLastName}} <span class="small">- 2 hours ago</span>
+                                    </p>
+                                </div>
+                                <p class="small mb-0">
+                                    {{r.text}}
+                                </p>
+                            </div>
+                            <button (click)="togglePanel[i] =!togglePanel[i]" type="button" class="btn btn-link">Reply</button>
+                            <button type="button" class="btn btn-link">Delete</button>
+                            <button type="button" class="btn btn-link">Edit</button>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                        <div *ngIf="togglePanel[i]">
+                            <div class="row commentpart">
+                                <img src="{{CurrentUser.imageUrl}}" class="avatar" />
+                                <form class="example-form row" [formGroup]="replyForm" (ngSubmit)="onReply(i, c.id, replyForm.value)" layout layout-align="center" layout-padding>
+                                    <div class="form-group col-11">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Leave a reply</mat-label>
+                                            <textarea matInput placeholder="Ex. It makes me feel..." formControlName="reply"
+                                                      class="form-control" [ngClass]="{ 'is-invalid': submitted && f.reply.errors}"></textarea>
+                                            <div *ngIf="submitted && f.reply.errors" class="invalid-feedback">
+                                                <div *ngIf="f.reply.errors.maxlength">Comment must be at most 600 characters</div>
+                                            </div>
+
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-1">
+                                        <button mat-button [disabled]="!replyForm.value.reply || replyForm.invalid">Reply</button>
+                                        <button mat-button [disabled]="!replyForm.value.reply || replyForm.invalid">Cancel</button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>-->
+

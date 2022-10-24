@@ -49,7 +49,7 @@
                     <p class="card-text">{{g.price | currency:'USD':true}}</p>
                     <a href="trial" target="_blank" class="btn btn-primary">Buy <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
                     <a *ngIf="loggedIn()"  class="btn" data-toggle="tooltip" title="Click to edit" (click)="Edit(g)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a  href="#" class="btn" data-toggle="tooltip" title="More info" (click)="showInfo(g)" [routerLink]="['/games/'+g.id]"><i class="fa fa-info" aria-hidden="true"></i></a>
+                    <a   class="btn" data-toggle="tooltip" title="More info" (click)="showInfo(g)" [routerLink]="['/games/'+g.id]"><i class="fa fa-info" aria-hidden="true"></i></a>
                     <a *ngIf="loggedIn()" href="#" class="btn" data-toggle="tooltip" title="Delete" (click)="Delete(g)" [routerLink]="['/']"><i class="fa fa-trash"></i></a>
                 </div>
 

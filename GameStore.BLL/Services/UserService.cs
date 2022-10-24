@@ -6,6 +6,7 @@ using GameStore.DAL.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,9 +54,10 @@ namespace GameStore.BLL.Services
             return users.Select(i => _mapper.Map<UserModel>(i));
         }
 
-        public Task<UserModel> GetByIdAsync(int id)
+        public  async Task<UserModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            User user = await _unit.UserRepository.GetByIdAsync(id);
+            return  _mapper.Map<UserModel>(user);
         }
 
         public UserModel GetUserByCredentials(LoginModel loginModel)
@@ -67,6 +69,7 @@ namespace GameStore.BLL.Services
         {
             User user = _mapper.Map<User>(model);
             _unit.UserRepository.Update(id, user);
+            await _unit.SaveAsync();
         }
     }
 }

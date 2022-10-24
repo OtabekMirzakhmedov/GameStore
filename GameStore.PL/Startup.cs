@@ -62,6 +62,10 @@ namespace ProjectAngular
             services.AddTransient<IGameGenreRepository, GameGenreRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<ICommentService, CommentService>();
+
+
 
             services.Configure<IdentityOptions>(options =>
             {

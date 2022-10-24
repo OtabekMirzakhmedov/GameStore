@@ -1,0 +1,26 @@
+<div class="row commentpart">
+    <div *ngIf="f.title.errors" class="alert alert-danger" role="alert">Comment must be at most 600 characters</div>
+    <form class="example-form row" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <img src="{{CurrentUser.imageUrl}}" class="avatar" />
+        <div class="col-8">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput class="comment-form-textarea" formControlName="title" placeholder="Ex. It makes me feel..."></textarea>
+
+            </mat-form-field>
+        </div>
+        <div class="col-2">
+            <button mat-button class="btn  btn-sm" type="submit" [disabled]="!form.value.title ||form.invalid">
+                {{ submitLabel }}
+            </button>
+            <button mat-button *ngIf="hasCancelButton"
+                    [disabled]="!form.value.title"
+                    type="button"
+                    class="btn  btn-sm"
+                    (click)="handleCancel.emit() ; onCancel()">
+                Cancel
+            </button>
+        </div>
+    </form>
+
+</div>

@@ -24,6 +24,8 @@ namespace GameStore.DAL.Entities
         public string GenreName { get; set; }
 
         public virtual ICollection<GameGenre> GameGenres { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
         
     }
 }

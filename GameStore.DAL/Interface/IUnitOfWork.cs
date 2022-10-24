@@ -16,6 +16,8 @@ namespace GameStore.DAL.Interface
 
         IUserRepository UserRepository { get; }
 
+        ICommentRepository CommentRepository { get; }
+
         Task SaveAsync();
 
     }

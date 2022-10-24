@@ -109,7 +109,7 @@ export class HomeComponent {
     }
 
     showinfo(game: GameModel) {
-        this.router.navigate(['api/game/games/', game.id]);
+        this.router.navigate([this.baseUrl+'/games/'+ game.id]);
     }
     Delete(game: GameModel) {
         console.log(game);

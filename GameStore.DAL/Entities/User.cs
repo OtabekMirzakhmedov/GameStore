@@ -19,5 +19,7 @@ namespace GameStore.DAL.Entities
         public string Email { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

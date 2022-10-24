@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" *ngIf="registration">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
 
         <div class="container-fluid">
             <a class="navbar-brand" [routerLink]="['/']">GameStore</a>
@@ -53,19 +53,19 @@
 
             </div>
             <div *ngIf="loggedIn()">
-                <div class="navbar-collapse collapse d-flex justify-content-end"
+                <div class="navbar-collapse"
                      [ngClass]="{ show: isExpanded }">
                     <ul class="navbar-nav">
                         <li>
-
                             <img title="click to change avatar" src="{{CurrentUser.imageUrl}}" alt="click to change avatar" class="avatar" (click)="changeAvatar()">
                         </li>
                         <li class="nav-item" [routerLinkActive]="['link-active']">
-                            <a  class="nav-link text-dark float-right" >{{CurrentUser.firstName +' '+CurrentUser.lastName}}</a>
+                            <a class="nav-link text-dark">{{CurrentUser.firstName +' '+CurrentUser.lastName}}</a>
                         </li>
-                        <li class="nav-item" [routerLinkActive]="['link-active']">
-                            <a class="nav-link text-dark float-right"  (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        <li class="nav-item">
+                            <button class="nav-link text-dark" (click)="onLogout()">SignOut</button>
                         </li>
+                       
                     </ul>
                 </div>
 

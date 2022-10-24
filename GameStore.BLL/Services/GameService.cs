@@ -52,6 +52,7 @@ namespace GameStore.BLL.Services
         {
             Game game = _mapper.Map<Game>(model);
              _unit.GameRepository.Update(id, game);
+            await _unit.SaveAsync();
         }
     }
 }

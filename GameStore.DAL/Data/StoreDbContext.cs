@@ -29,6 +29,8 @@ namespace GameStore.DAL.Data
         public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
 
  
 
@@ -47,12 +49,15 @@ namespace GameStore.DAL.Data
                 .WithMany(s => s.GameGenres)
                 .HasForeignKey(sc => sc.GenreId);
 
-            modelBuilder.Entity<User>().Property(p => p.FirstName).HasDefaultValue("default");
-            modelBuilder.Entity<User>().Property(p => p.Email).HasDefaultValue("default");
-            modelBuilder.Entity<User>().Property(p => p.LastName).HasDefaultValue("default");
-        
-            modelBuilder.Entity<User>().Property(p => p.UserName).HasDefaultValue("default");
-            modelBuilder.Entity<User>().Property(p => p.Password).HasDefaultValue("default");
+            modelBuilder.Entity<Game>().
+                 HasMany<Comment>(sc => sc.Comments).
+                 WithOne(c => c.Game).
+                 HasForeignKey(i => i.GameId);
+
+            modelBuilder.Entity<User>().
+                HasMany<Comment>(sc => sc.Comments).
+                WithOne(c => c.User).
+                HasForeignKey(i => i.UserId);
 
         }
 
