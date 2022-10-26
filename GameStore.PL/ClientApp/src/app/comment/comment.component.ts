@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { browserRefresh } from '../app.component';
-
 
 @Component({
   selector: 'app-comment',
@@ -35,7 +33,7 @@ export class CommentComponent implements OnInit {
     ngOnInit(): void {
         
         this.replyId = this.parentCommentId ? this.parentCommentId : this.comment.id;
-        console.log(browserRefresh);
+
     }
 
 
