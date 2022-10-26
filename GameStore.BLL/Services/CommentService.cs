@@ -58,52 +58,5 @@ namespace GameStore.BLL.Services
             _unit.CommentRepository.Update(id, comment);
             await _unit.SaveAsync();
         }
-
-        //public Task AddAsync(CommentViewModel model)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public async Task AddAsync(CommentUploadModel model)
-        //{
-        //    Comment comment = _mapper.Map<Comment>(model);
-
-        //    await _unit.CommentRepository.AddAsync(comment);
-        //    await _unit.SaveAsync();
-        //}
-
-        //public async Task DeleteAsync(int modelId)
-        //{
-        //    await _unit.CommentRepository.DeleteByIdAsync(modelId);
-        //    await _unit.SaveAsync();
-        //}
-
-        //public async Task<IEnumerable<CommentViewModel>> GetAllAsync()
-        //{
-        //    IEnumerable<Comment> comments = await _unit.CommentRepository.GetAllAsync();
-        //    return comments.Select(i => _mapper.Map<CommentViewModel>(i));
-        //}
-
-        //public async Task<IEnumerable<CommentUploadModel>> GetAllUploadModelAsync()
-        //{
-        //    IEnumerable<Comment> comments = await _unit.CommentRepository.GetAllAsync();
-        //    return comments.Select(i => _mapper.Map<CommentUploadModel>(i));
-        //}
-
-        //public Task<CommentViewModel> GetByIdAsync(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public async Task<IEnumerable<CommentViewModel>> GetCommentsByGameId(int gameId)
-        //{
-        //    IEnumerable<Comment> comments = await _unit.CommentRepository.GetCommentsByGameId(gameId);
-        //    return comments.Select(i => _mapper.Map<CommentViewModel>(i));
-        //}
-
-        //public Task UpdateAsync(int id, CommentViewModel model)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
