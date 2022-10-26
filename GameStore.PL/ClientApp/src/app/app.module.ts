@@ -37,6 +37,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridList, MatGridListModule } from '@angular/material/grid-list';
 import { SearchfilterPipe } from './searchfilter.pipe';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CartService } from './CartService/cart.service';
+import { CartItemsComponent } from './cart-items/cart-items.component';
+import { OrderProceedComponent } from './order-proceed/order-proceed.component';
 
 
 
@@ -56,7 +60,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         SearchfilterPipe,
         AvatarChangeComponent,
         CommentFormComponent,
-        CommentComponent
+        CommentComponent,
+        CartItemsComponent,
+        OrderProceedComponent
 
   ],
     imports: [
@@ -82,6 +88,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         MatGridListModule,
         MatCardModule,
         MatButtonToggleModule,
+        MatBadgeModule,
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'games/add', component: AddGameComponent },
@@ -91,13 +98,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         { path: 'games/:id', component: GameDetailComponent },
         { path: 'register', component: UserRegistrationComponent },
         { path: 'login', component: UserloginComponent },
-        { path: 'avatar', component: AvatarChangeComponent }
+        { path: 'avatar', component: AvatarChangeComponent },
+        { path: 'cart', component: CartItemsComponent },
+        { path: 'proceed', component: OrderProceedComponent}
 
 
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CartService],
     bootstrap: [AppComponent],
   entryComponents: [AddGameComponent]
 })

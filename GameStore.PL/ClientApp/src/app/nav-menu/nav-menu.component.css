@@ -24,3 +24,14 @@ html {
     border-radius: 50%;
     cursor : pointer;
 }
+.cart {
+    vertical-align: middle;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.mat-badge-content {
+    background: orange;
+    color: black;
+}

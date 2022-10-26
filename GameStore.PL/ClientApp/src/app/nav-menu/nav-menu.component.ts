@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserloginComponent } from '../userlogin/userlogin.component';
 import { AvatarChangeComponent } from '../avatar-change/avatar-change.component';
+import { CartService } from '../CartService/cart.service';
 
 
 @Component({
@@ -16,9 +17,9 @@ import { AvatarChangeComponent } from '../avatar-change/avatar-change.component'
 export class NavMenuComponent implements OnInit{
     public registration: boolean = true;
     CurrentUser: UserModel = JSON.parse( localStorage.getItem('user'));
-
+    private cartProductCount: number = 0;
    
-    constructor(private dialog: MatDialog, private router: Router) { }
+    constructor(private dialog: MatDialog, private router: Router, private cartservice : CartService) { }
 
     loggedIn() {
         if (localStorage.getItem('userStatus') === 'success') {
@@ -27,6 +28,10 @@ export class NavMenuComponent implements OnInit{
         }
     }
     ngOnInit(): void {
+        this.cartservice.getProducts().subscribe(data => {
+            this.cartProductCount = data.length;
+            console.log(data);
+        })
     
       
   }

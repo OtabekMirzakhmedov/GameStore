@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddGameComponent } from '../add-game/add-game.component';
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CartService } from '../CartService/cart.service';
 
 
  
@@ -18,6 +19,7 @@ export class HomeComponent {
     form: FormGroup = new FormGroup({});
     _genreList: genreCheckbox[];
     searchText: string = '';
+    addedProducts: any[];
 
     getGenres() {
         this._genreList = [
@@ -50,7 +52,9 @@ export class HomeComponent {
     }
 
     constructor(private _formBuilder: FormBuilder, private router: Router,
-        private actRoute: ActivatedRoute, private dialog: MatDialog, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+        private actRoute: ActivatedRoute, private dialog: MatDialog, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
+        private cartservice: CartService) {
+
         
     }
     onCreate() {
@@ -105,6 +109,10 @@ export class HomeComponent {
     ngOnInit() {
         this.getGenres();
         this.getGames();
+        this.cartservice.getProducts().subscribe(data => {
+            this.addedProducts = data;
+        })
+        console.log(this.addedProducts);
 
     }
 
@@ -128,6 +136,12 @@ export class HomeComponent {
         });
     }
 
+    addToCart(g: GameModel) {
+        this.cartservice.addProductToCart(g);
+      
+
+    }
+
 
 }
 
@@ -145,4 +159,9 @@ class genreCheckbox {
     id: number;
     name: string;
     isSelected: boolean;
+}
+
+interface CartModel {
+    game: GameModel;
+    quantity: number;
 }
