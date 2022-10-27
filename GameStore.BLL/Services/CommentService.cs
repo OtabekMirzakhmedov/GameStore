@@ -48,7 +48,7 @@ namespace GameStore.BLL.Services
 
         public async Task<IEnumerable<CommentViewModel>> GetCommentsByGameId(int gameId)
         {
-            IEnumerable<Comment> comments = await _unit.CommentRepository.GetAllAsync();
+            IEnumerable<Comment> comments = await _unit.CommentRepository.GetCommentsByGameId(gameId);
             return comments.Select(i => _mapper.Map<CommentViewModel>(i));
         }
 
