@@ -41,7 +41,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from './CartService/cart.service';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { OrderProceedComponent } from './order-proceed/order-proceed.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { CommentService } from './CommentService/comment.service';
 
 
 
@@ -89,6 +90,7 @@ import { OrderProceedComponent } from './order-proceed/order-proceed.component';
         MatCardModule,
         MatButtonToggleModule,
         MatBadgeModule,
+        ToastrModule.forRoot(),
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'games/add', component: AddGameComponent },
@@ -106,7 +108,7 @@ import { OrderProceedComponent } from './order-proceed/order-proceed.component';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [CartService],
+  providers: [CartService, CommentService],
     bootstrap: [AppComponent],
   entryComponents: [AddGameComponent]
 })

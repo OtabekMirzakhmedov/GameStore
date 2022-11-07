@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder,FormGroup, Validators} from '@angular/forms';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order-proceed',
@@ -11,7 +11,7 @@ export class OrderProceedComponent implements OnInit {
     form: FormGroup;
     submitted = false;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
     ngOnInit(): void {
         this.form = this.formBuilder.group(
@@ -37,8 +37,11 @@ export class OrderProceedComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
-        
-        console.log(JSON.stringify(this.form.value, null, 2));
+        this.toastr.success('Thank you for your order', 'Order Succesful', {
+            timeOut: 3000,
+        });
+
+        //console.log(JSON.stringify(this.form.value, null, 2));
     }
 
     onReset(): void {

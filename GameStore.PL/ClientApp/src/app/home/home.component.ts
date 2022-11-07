@@ -71,27 +71,28 @@ export class HomeComponent {
     tempArray: any = [];
     newArray: any = [];
     arrays: any = [];
+    checkboxgenrelist: genreCheckbox[] = [];
+    tempCheckbox: genreCheckbox;
     onChange(event: any) {
         console.log(event.target.checked);
-        if (event.target.checked) {
-            console.log(event.target.value);
-            /*console.log(this._genreList.filter(x => x.isSelected == true).map(x => x.name).join("/").toString());*/
-            this.tempArray = this.gamesTempArray.filter((e: any) => !(e.genreName.indexOf(event.target.value)));
-            this.newArray.push(this.tempArray);
-            this.games = [];
-
-            for (let i = 0; i < this.newArray.length; i++) {
-                var firstarray = this.newArray[i];
-                for (let j = 0; j < firstarray.length; j++) {
-                    var obj = firstarray[j];
-                    this.games.push(obj);
-                }
-            }
-        }
-        else {
-            this.tempArray = this.games.filter((e: any) => (e.genreName.indexOf(event.target.value)));
+        if (this._genreList.filter(x => x.isSelected == true).length > 0) {
+            this.tempArray = [];
             this.newArray = [];
-            this.newArray.push(this.tempArray);
+
+            this.checkboxgenrelist = this._genreList.filter(x => x.isSelected == true);
+            console.log(this.checkboxgenrelist);
+
+            /*console.log(this._genreList.filter(x => x.isSelected == true).map(x => x.name).join("/").toString());*/
+
+            for (let i = 0; i < this.checkboxgenrelist.length; i++) {
+                this.tempArray = this.gamesTempArray.filter((e: any) => !(e.genreName.indexOf(this.checkboxgenrelist[i].name)));
+                this.newArray.push(this.tempArray);
+            }
+
+   /*         this.tempArray = this.gamesTempArray.filter((e: any) => !(e.genreName.indexOf(event.target.value)));*/
+            console.log(this.tempArray);
+            
+            console.log(this.newArray);
             this.games = [];
 
             for (let i = 0; i < this.newArray.length; i++) {
@@ -101,7 +102,26 @@ export class HomeComponent {
                     this.games.push(obj);
                 }
             }
+
+        } else {
+            this.games = this.gamesTempArray;
+            this.tempArray = [];
+            this.newArray = [];
         }
+        //else {
+        //    this.tempArray = this.games.filter((e: any) => (e.genreName.indexOf(event.target.value)));
+        //    this.newArray = [];
+        //    this.newArray.push(this.tempArray);
+        //    this.games = [];
+
+        //    for (let i = 0; i < this.newArray.length; i++) {
+        //        var firstarray = this.newArray[i];
+        //        for (let j = 0; j < firstarray.length; j++) {
+        //            var obj = firstarray[j];
+        //            this.games.push(obj);
+        //        }
+        //    }
+        //}
         
     }
 
