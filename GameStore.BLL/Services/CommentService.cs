@@ -28,6 +28,7 @@ namespace GameStore.BLL.Services
 
             await _unit.CommentRepository.AddAsync(comment);
             await _unit.SaveAsync();
+            model.Id = comment.Id;
         }
 
         public async Task DeleteAsync(int modelId)

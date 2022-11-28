@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-    
+    CurrentUser: UserModel = JSON.parse(localStorage.getItem('user'));
     @Input() comment!: CommentModel;
     @Input() activeComment!: ActiveCommentInterface | null;
     @Input() replies!: CommentModel[];
@@ -26,7 +26,11 @@ export class CommentComponent implements OnInit {
     canEdit: boolean = true;
     canDelete: boolean = true;
     undoDeleting: boolean = false;
-
+    loggedIn() {
+        if (localStorage.getItem('userStatus') === 'success') {
+            return true;
+        }
+    }
     activeCommentType = ActiveCommentTypeEnum;
     replyId: number | 0 = 0;
 
@@ -97,4 +101,14 @@ enum ActiveCommentTypeEnum {
 interface ActiveCommentInterface {
     id: number;
     type: ActiveCommentTypeEnum;
+}
+
+interface UserModel {
+    id: number,
+    firstName: string,
+    lastName: string,
+    userName: string,
+    email: string,
+    password: string,
+    imageUrl: string
 }

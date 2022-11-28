@@ -26,11 +26,11 @@ export class GameDetailComponent implements OnInit {
         text: '',
         parentCommentId: 0,
         createdTime: undefined,
-        userId: this.CurrentUser.id,
+        userId: 0,
         gameId: 0,
-        userImageUrl: this.CurrentUser.imageUrl,
-        userFirstName: this.CurrentUser.firstName,
-        userLastName: this.CurrentUser.lastName
+        userImageUrl: undefined,
+        userFirstName: undefined,
+        userLastName: undefined
     };
 
     constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private formBuilder: FormBuilder,) {
@@ -83,9 +83,11 @@ export class GameDetailComponent implements OnInit {
         this.postedComment.id = commentId;
 
         this.http.put<CommentModel>(this.baseUrl + 'api/Comment/' + commentId, this.postedComment).subscribe();
-        window.location.reload();
-        this.reload = false;
         
+        this.comments.find(item => item.id === commentId).text = text;
+        this.comments.find(item => item.id === commentId).createdTime = new Date();
+        this.activeComment = null;
+       
     }
 
     deleteComment(commentId: number): void {
@@ -108,17 +110,26 @@ export class GameDetailComponent implements OnInit {
         parentCommentId: number| 0;
         }): void {
 
+        this.postedComment.userFirstName = this.CurrentUser.firstName;
+        this.postedComment.userImageUrl = this.CurrentUser.imageUrl;
+        this.postedComment.userLastName = this.CurrentUser.lastName;
+        this.postedComment.userId = this.CurrentUser.id;
         this.postedComment.text = text;
         this.postedComment.parentCommentId = parentCommentId;
         this.postedComment.createdTime = new Date();
         this.postedComment.gameId = this.game.id;
-        console.log(this.postedComment);
+       /* console.log(this.postedComment);*/
       
 
-        this.http.post<CommentModel>(this.baseUrl + 'api/Comment/', this.postedComment).subscribe((res) => console.log(res));
-        console.log(text, parentCommentId)
-        window.location.reload();
-        this.reload = false;
+        this.http.post<CommentModel>(this.baseUrl + 'api/Comment/', this.postedComment).subscribe((res) => {
+            this.comments.unshift(res);
+            console.log(res);
+        });
+        this.activeComment = null;
+       
+        //console.log(text, parentCommentId)
+        /*window.location.reload();*/
+        /*this.reload = false;*/
     }
 
     getReplies(commentId: number): CommentModel[] {

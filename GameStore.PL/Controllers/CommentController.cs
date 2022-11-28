@@ -5,6 +5,7 @@ using GameStore.BLL.Models;
 using GameStore.BLL.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameStore.DAL.Entities;
 
 namespace GameStore.Controllers
 {
@@ -27,7 +28,18 @@ namespace GameStore.Controllers
         public async Task<ActionResult> Add([FromBody] CommentModel value)
         {
             await _commentService.AddAsync(value);
-            return Created("", value);
+            UserModel userModel = await _userService.GetByIdAsync(value.UserId);
+            CommentViewModel viewModel = new CommentViewModel();
+            viewModel.CreatedTime = value.CreatedTime;
+            viewModel.Text = value.Text;
+            viewModel.ParentCommentId = value.ParentCommentId;
+            viewModel.UserImageUrl = userModel.ImageUrl;
+            viewModel.UserLastName = userModel.LastName;
+            viewModel.UserFirstName = userModel.FirstName;
+            viewModel.UserId = value.UserId;
+            viewModel.GameId = value.GameId;
+            viewModel.Id = value.Id;
+            return Created("", viewModel);
         }
 
 

@@ -18,7 +18,7 @@
         updateComment.emit({ text: $event, commentId: comment.id })
       "
                           (handleCancel)="setActiveComment.emit(null)"></app-comment-form>
-        <div *ngIf="!isDeleting()" class="comment-actions">
+        <div *ngIf="!isDeleting() &&loggedIn()" class="comment-actions">
             <div *ngIf="canReply"
                  class="comment-action"
                  (click)="
@@ -29,7 +29,7 @@
         ">
                 Reply
             </div>
-            <div *ngIf="canEdit"
+            <div *ngIf="comment.userId===CurrentUser.id"
                  class="comment-action"
                  (click)="
           setActiveComment.emit({
@@ -39,7 +39,7 @@
         ">
                 Edit
             </div>
-            <div *ngIf="canDelete"
+            <div *ngIf="comment.userId===CurrentUser.id"
                  class="comment-action"
                  (click)="
           setActiveComment.emit({

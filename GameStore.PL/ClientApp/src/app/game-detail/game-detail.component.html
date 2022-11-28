@@ -29,8 +29,8 @@
 
 <div class="comments">
     <h3 class="comments-title">Comments</h3>
-    <div class="comment-form-title">Write comment</div>
-    <app-comment-form submitLabel="Save"
+    <div class="comment-form-title" *ngIf="loggedIn()">Write comment</div>
+    <app-comment-form *ngIf="loggedIn()" submitLabel="Save"
                   (handleSubmit)="addComment({ text: $event, parentCommentId: 0})">
     </app-comment-form>
     <div class="comments-container">
